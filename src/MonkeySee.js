@@ -18,8 +18,8 @@ class MonkeySee {
     // Error out if we don't have support
     this.checkForMediaSupport()
 
-    // Load libraries
-    this.maybeReadWASMBinary()
+    // Initialize and read the BRFv4 Web Assembly binoary into a buffer
+    this.initAndMaybeReadWASMBinary()
   }
 
   // Checks that the environment supports this project, by peaking into the available canvas API
@@ -43,7 +43,7 @@ class MonkeySee {
   }
 
   // Reads the Web ASM Binary into a buffer if it's supported
-  maybeReadWASMBinary () {
+  initAndMaybeReadWASMBinary () {
     if (this.isWASMSupported) {
       let xhr = new XMLHttpRequest()
       let url = this.brfv4.baseURL + this.brfv4.sdk + '.wasm'
@@ -70,7 +70,19 @@ class MonkeySee {
 
   // Initializes BRFv4
   init () {
+    this.injectBRFv4()
     console.log('READY')
+  }
+
+  // Injects the BRFv4 library into the DOM
+  injectBRFv4 () {
+    let script = document.createElement('script')
+
+    script.setAttribute('type', 'text/javascript')
+    script.setAttribute('async', true)
+    script.setAttribute('src', this.brfv4.baseURL + this.brfv4.sdk + '.js')
+
+    document.body.appendChild(script)
   }
 }
 
