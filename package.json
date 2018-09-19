@@ -1,0 +1,46 @@
+{
+  "name": "monkeysee",
+  "version": "0.0.1",
+  "description": "A drop-in library for adding face-controlled mouse pointers with computer vision via BRFv4 🙈",
+  "main": "src/main.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --mode development --config build/webpack.config.dev.js --open",
+    "build": "webpack -p --progress --mode production --config build/webpack.config.build.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/labofoz/webpack-umd-boilerplate.git"
+  },
+  "author": "TensorMonkey <tensormonkey@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/labofoz/webpack-umd-boilerplate/issues"
+  },
+  "homepage": "https://github.com/labofoz/webpack-umd-boilerplate#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "clean-webpack-plugin": "^0.1.19",
+    "copy-webpack-plugin": "^4.5.2",
+    "cross-env": "^5.2.0",
+    "css-loader": "^1.0.0",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.2.0",
+    "ify-loader": "^1.1.0",
+    "pug": "^2.0.3",
+    "pug-loader": "^2.4.0",
+    "spectre.css": "^0.5.3",
+    "style-loader": "^0.22.1",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "webpack": "^4.16.5",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.5",
+    "webpack-merge": "^4.1.4"
+  },
+  "dependencies": {
+    "idempotent-babel-polyfill": "^6.26.0-1"
+  }
+}
