@@ -5,6 +5,19 @@ class MonkeySee {
     this.isSupported = false
     this.isWASMSupported = typeof WebAssembly === 'object'
 
+    // Properties
+    // @see this.injectDebugger
+    this.debug = {
+      // The webcam stream
+      $webcam: null,
+      // The canvas to display debug info on
+      $canvas: null,
+      // The canvas context
+      ctx: null,
+      // The wrapping element
+      $wrap: null
+    }
+
     // BRFv4 config
     this.brfv4 = {
       // Will fallback to ASM if Web ASM isn't supported
@@ -71,18 +84,52 @@ class MonkeySee {
   // Initializes BRFv4
   init () {
     this.injectBRFv4()
+    this.injectDebugger()
     console.log('READY')
   }
 
   // Injects the BRFv4 library into the DOM
   injectBRFv4 () {
-    let script = document.createElement('script')
+    let $script = document.createElement('script')
 
-    script.setAttribute('type', 'text/javascript')
-    script.setAttribute('async', true)
-    script.setAttribute('src', this.brfv4.baseURL + this.brfv4.sdk + '.js')
+    $script.setAttribute('type', 'text/javascript')
+    $script.setAttribute('async', true)
+    $script.setAttribute('src', this.brfv4.baseURL + this.brfv4.sdk + '.js')
 
-    document.body.appendChild(script)
+    document.body.appendChild($script)
+  }
+
+  // Inject the debugger, which includes a video, canvas, and wrapping div
+  injectDebugger () {
+    let $webcam
+    let $canvas
+    let $wrap
+
+    // Create debug elements
+    this.debug.$wrap = $wrap = document.createElement('div')
+    this.debug.$webcam = $webcam = document.createElement('video')
+    this.debug.$canvas = $canvas = document.createElement('canvas')
+
+    $wrap.classList.add('monkeysee-debugger')
+    $webcam.classList.add('monkeysee-webcam')
+    $canvas.classList.add('monkeysee-canvas')
+
+    // Apply minimal styles
+    $webcam.setAttribute('playsinline', 'playsinline')
+    $wrap.style.display = 'inline-block'
+    $wrap.style.position = 'relative'
+    $webcam.style.transform = 'scale(-1, 1)'
+    $canvas.style.transform = 'scale(-1, 1)'
+    $canvas.style.position = 'absolute'
+    $canvas.style.top = '0px'
+    $canvas.style.left = '0px'
+    $canvas.style.width = '100%'
+    $canvas.style.height = '100%'
+
+    // Inject
+    document.body.appendChild($wrap)
+    $wrap.appendChild($webcam)
+    $wrap.appendChild($canvas)
   }
 }
 
