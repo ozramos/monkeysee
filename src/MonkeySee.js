@@ -254,14 +254,18 @@ class MonkeySee {
    * Draws the faces onto the debugger canvas
    */
   drawFaces () {
+    const ctx = this.debug.ctx
+
     this.faces.forEach(face => {
       if (face.state === this.brf.sdk.BRFState.FACE_TRACKING_START || face.state === this.brf.sdk.BRFState.FACE_TRACKING) {
-        this.debug.ctx.strokeStyle = '#ff0'
+        ctx.strokeStyle = '#ff0'
+        ctx.lineWidth = 3
 
+        // Draw Vertices
         for (let i = 0; i < face.vertices.length; i += 2) {
-          this.debug.ctx.beginPath()
-          this.debug.ctx.arc(face.vertices[i], face.vertices[i + 1], 2, 0, 2 * Math.PI)
-          this.debug.ctx.stroke()
+          ctx.beginPath()
+          ctx.arc(face.vertices[i], face.vertices[i + 1], 3, 0, 2 * Math.PI)
+          ctx.stroke()
         }
       }
     })
