@@ -35,7 +35,10 @@ class MonkeySee {
     this.initAndMaybeReadWASMBinary()
   }
 
-  // Checks that the environment supports this project, by peaking into the available canvas API
+  /**
+   * Checks that the environment supports this project,
+   * by peaking into the available canvas API
+   */
   checkForMediaSupport () {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
       try {
@@ -48,14 +51,19 @@ class MonkeySee {
     }
   }
 
-  // Throws an error
+  /**
+   * Throws an error by notifiying the user
+   * @param  {String} msg The message to display
+   */
   throwError (msg) {
     throw new Error(msg)
     console.error(e)
     alert(msg)
   }
 
-  // Reads the Web ASM Binary into a buffer if it's supported
+  /**
+   * Reads the Web ASM Binary into a buffer if it's supported
+   */
   initAndMaybeReadWASMBinary () {
     if (this.isWASMSupported) {
       let xhr = new XMLHttpRequest()
@@ -81,14 +89,18 @@ class MonkeySee {
     }
   }
 
-  // Initializes BRFv4
+  /**
+   * Initializes BRFv4
+   */
   init () {
     this.injectBRFv4()
     this.injectDebugger()
     console.log('READY')
   }
 
-  // Injects the BRFv4 library into the DOM
+  /**
+   * Injects the BRFv4 library into the DOM
+   */
   injectBRFv4 () {
     let $script = document.createElement('script')
 
@@ -99,7 +111,9 @@ class MonkeySee {
     document.body.appendChild($script)
   }
 
-  // Inject the debugger, which includes a video, canvas, and wrapping div
+  /**
+   * Inject the debugger, which includes a video, canvas, and wrapping div
+   */
   injectDebugger () {
     let $webcam
     let $canvas
