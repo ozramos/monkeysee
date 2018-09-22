@@ -5,6 +5,9 @@ class MonkeySee {
     this.isSupported = false
     this.isWASMSupported = typeof WebAssembly === 'object'
 
+    // The collection of plugins by name
+    this.plugin = {}
+
     // Properties
     // @see this.injectDebugger
     this.debug = {
@@ -120,5 +123,6 @@ class MonkeySee {
 require('./Setup')(MonkeySee)
 require('./Util')(MonkeySee)
 require('./Debug')(MonkeySee)
+require('./Plugin')(MonkeySee)
 require('./components/Cursor')(MonkeySee)
 module.exports = MonkeySee
