@@ -172,6 +172,8 @@ class MonkeySee {
     $cursor.classList.add('monkeysee-cursor')
     $cursor.style.position = 'fixed'
     $cursor.style.background = '#f00'
+    $cursor.style.left = '-100px'
+    $cursor.style.top = '-100px'
     $cursor.style.width = '20px'
     $cursor.style.height = '20px'
     $cursor.style.borderRadius = '20px'
@@ -183,7 +185,7 @@ class MonkeySee {
   /**
    * Starts the webcam stream
    */
-  startCamera () {
+  start () {
     window.navigator.mediaDevices.getUserMedia({
       video: {width: 640, height: 480, frameRate: 30}
     }).then(mediaStream => {
