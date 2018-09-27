@@ -123,7 +123,7 @@ class MonkeySee {
 }
 
 // Set the lib path to whereever this file is, this is required for loading the BRFv4 SDK
-MonkeySee.libPath = trimStart(document.currentScript.getAttribute('src').replace('monkeysee.js', ''), '/')
+MonkeySee.libPath = trimStart(document.currentScript.getAttribute('src').replace('/monkeysee.js', ''), '/')
 
 // Remember: to kick things off you'll want to instantiate this with `new`
 require('./Setup')(MonkeySee)
