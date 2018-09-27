@@ -1,8 +1,12 @@
 {
   "name": "monkeysee",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A drop-in library for adding face-controlled mouse pointers with computer vision via BRFv4 🙈",
-  "main": "src/main.js",
+  "main": "dist/monkeysee.js",
+  "files": [
+    "/dist/**/*",
+    "/src/**/*"
+  ],
   "scripts": {
     "dev": "cross-env NODE_ENV=dev webpack-dev-server --progress --mode development --config build/webpack.config.dev.js --open",
     "build": "webpack -p --progress --mode production --config build/webpack.config.build.js",

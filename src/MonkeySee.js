@@ -1,3 +1,5 @@
+const {trimStart} = require('lodash')
+
 class MonkeySee {
   constructor (opts = {}) {
     // Flags
@@ -24,7 +26,7 @@ class MonkeySee {
     // BRFv4 config
     this.brf = {
       // Will fallback to ASM if Web ASM isn't supported
-      baseURL: this.isWASMSupported ? '/assets/libs/brf_wasm/' : '/assets/libs/brf_asm/',
+      baseURL: this.isWASMSupported ? `${MonkeySee.libPath}/assets/libs/brf_wasm/` : `${MonkeySee.libPath}/assets/libs/brf_asm/`,
       // The BRFv4 Manager
       manager: null,
       // The BRFv4 Resolution
@@ -119,6 +121,9 @@ class MonkeySee {
     })
   }
 }
+
+// Set the lib path to whereever this file is, this is required for loading the BRFv4 SDK
+MonkeySee.libPath = trimStart(document.currentScript.getAttribute('src').replace('monkeysee.js', ''), '/')
 
 // Remember: to kick things off you'll want to instantiate this with `new`
 require('./Setup')(MonkeySee)

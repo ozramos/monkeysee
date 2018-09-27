@@ -27,22 +27,37 @@ The actual library is built with `/src/main.js` as the starting point. When peop
 
 The `/sandbox/` scripts are used when developing with `yarn dev` and are there to help you in developing your library (`/src/main.js`). Your library and `/sandbox/index.js` are automatically injected into `/sandbox/index.pug`. When you run `yarn build`, these files are included in the `/dist/` folder which allows you to quickly deploy examples with your library!
 
-## !!! IMPORTANT !!!
+## Usage
 
-Make sure the following are set, otherwise you may not publish/commit correctly:
+### Config
+You can instatiate MonkeySee with the following config (defaults are shown):
 
-- At a minimum, ensure that you changed the following `package.json` properties:
-  - name
-  - description
-  - repository.url
-  - author
-- Make sure to remove this git repo as the origin with: `git remove origin`
+```js
+const monkeysee = new MonkeySee({
+  // ... TODO
+})
+```
+
+### Plugins
+MonkeySee is built around a plugin architecture, which allows us to easily add and share functionality. We can even disable them!
+
+To add a plugin, use the `monkeysee.use({})` method with the following form:
+
+```js
+monkeysee.use({
+  name: '',
+  // Called once when the use method is called and after the plugin is added to the instance
+  onUse: () => {},
+  // Called once per frame, after calculations, along with the detected face object
+  onFrame: face => {}
+})
+```
 
 ## License
 Uses BRFv4: https://github.com/Tastenkunst/brfv4_javascript_examples
 Uses Haar Cascade: haarcascade_frontalface_default.xml
 
-<!--
+```
     Stump-based 24x24 discrete(?) adaboost frontal face detector.
     Created by Rainer Lienhart.
 
@@ -84,4 +99,4 @@ Uses Haar Cascade: haarcascade_frontalface_default.xml
  and on any theory of liability, whether in contract, strict liability,
  or tort (including negligence or otherwise) arising in any way out of
  the use of this software, even if advised of the possibility of such damage.
--->
+```
