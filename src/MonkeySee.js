@@ -59,6 +59,7 @@ class MonkeySee {
 
     // Initialize and read the BRFv4 Web Assembly binoary into a buffer
     this.initAndMaybeReadWASMBinary()
+    document.body.classList.add('monkeysee-stopped')
   }
 
   /**
@@ -66,6 +67,8 @@ class MonkeySee {
    */
   start () {
     this.toggleDebugger(this.opts.debug)
+    document.body.classList.add('monkeysee-started')
+    document.body.classList.remove('monkeysee-stopped')
 
     window.navigator.mediaDevices.getUserMedia({
       video: {width: 640, height: 480, frameRate: 30}
@@ -85,6 +88,9 @@ class MonkeySee {
    * Stop tracking and release webcam streams
    */
   stop () {
+    document.body.classList.remove('monkeysee-started')
+    document.body.classList.add('monkeysee-stopped')
+
     if (this.isTracking) {
       this.isTracking = false
       this.debug.$webcam.srcObject.getTracks().forEach(track => track.stop())
@@ -126,7 +132,8 @@ class MonkeySee {
     this.calculateXY()
     this.onFrameHooks(this.faces[0])
 
-    requestAnimationFrame(() => this.trackFaces())
+    // Only loop if we're tracking
+    this.isTracking && requestAnimationFrame(() => this.trackFaces())
   }
 
   /**
