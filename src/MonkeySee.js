@@ -63,6 +63,8 @@ class MonkeySee {
    * Starts the webcam stream
    */
   start () {
+    if (this.opts.debug) this.debug.$wrap.style.display = 'inline-block'
+    
     window.navigator.mediaDevices.getUserMedia({
       video: {width: 640, height: 480, frameRate: 30}
     }).then(mediaStream => {
@@ -94,7 +96,7 @@ class MonkeySee {
     this.faces = this.brf.manager.getFaces()
 
     // Do things with faces
-    this.drawFaces()
+    this.opts.debug && this.drawFaces()
     this.calculateXY()
     this.onFrameHooks(this.faces[0])
 
