@@ -78,4 +78,14 @@ module.exports = MonkeySee => {
       }
     })
   }
+
+  /**
+   * Toggle Debugger
+   */
+  MonkeySee.prototype.toggleDebugger = function (state = null) {
+    if (typeof state === 'boolean') this.opts.debug = state
+    else this.opts.debug = !this.opts.debug
+
+    this.debug.$wrap.style.display = this.opts.debug ? 'inline-block' : 'none'
+  }
 }
