@@ -44,9 +44,13 @@ const monkeysee = new MonkeySee({
 ```js
 // Starts tracking faces and shows the webcam if debug is on
 monkeysee.start()
+// Stops the webcam
+monkeysee.stop()
+// Toggle between start/stop (null), or explicitly set it to on (true) or off (false)
+monkeysee.toggle(true|false|null)
 
 // Toggles the debugger on (true), off (false), or flips the state (null)
-monkeysee.toggleDebugger()
+monkeysee.toggleDebugger(true|false|null)
 ```
 
 ### Debugging

@@ -81,6 +81,7 @@ module.exports = MonkeySee => {
 
   /**
    * Toggle Debugger
+   * @param {Boolean|Null} state Whether to turn it on (true), off (false), or flip between the two (null)
    */
   MonkeySee.prototype.toggleDebugger = function (state = null) {
     if (typeof state === 'boolean') this.debug.isDebugging = state

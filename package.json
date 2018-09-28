@@ -1,6 +1,6 @@
 {
   "name": "monkeysee",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "A drop-in library for adding face-controlled mouse pointers with computer vision via BRFv4 🙈",
   "main": "dist/monkeysee.js",
   "files": [
