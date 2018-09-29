@@ -151,8 +151,8 @@ class MonkeySee {
       // Calculate X/Y
       let x = -face.translationX * ratio.width + this.debug.$canvas.width + window.outerWidth / 2
       let y = face.translationY * ratio.height
-      this.cursor.x = x += Math.sin(face.rotationY) * window.outerWidth
-      this.cursor.y = y += Math.sin(face.rotationX) * window.outerHeight
+      this.cursor.x = x += Math.sin(face.rotationY) * 2 * window.outerWidth
+      this.cursor.y = y += Math.sin(face.rotationX) * 2 * window.outerHeight
 
       // Update pointer and vars
       this.cursor.$el.style.left = `${x}px`
